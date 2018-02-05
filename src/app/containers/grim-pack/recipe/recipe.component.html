@@ -1,0 +1,75 @@
+<div *ngIf="recipe.recipeType === 'crafting_shaped' || recipe.recipeType === 'crafting_shapeless'" class="recipe-bg">
+
+  <img [src]="getCraftingImage(false)" class="img-fluid">
+
+  <a [routerLink]="getRouterLink(recipe.output)">
+    <ng-template #outputTooltip>
+      <span [innerHTML]="getToolTip(recipe.output)"></span>
+    </ng-template>
+    <img *ngIf="recipe.output" [src]="getImage(recipe.output, false)" class="output-small img-fluid" [tooltip]="outputTooltip" placement="top" container="body" containerClass="itemTooltip"></a>
+  <span *ngIf="recipe.output.amount > 1" class="output-amount-crafting">{{recipe.output.amount}}</span>
+
+  <!--   Display inputs -->
+  <a *ngFor="let input of recipe.inputs; let i = index" [routerLink]="getRouterLink(input)">
+    <ng-template #inputSmallTooltip>
+      <span [innerHTML]="getToolTip(input)"></span>
+    </ng-template>
+    <img
+      *ngIf="input.id !== 'empty'"
+      [src]="getImage(input, false)"
+      class="img-fluid"
+      [tooltip]="inputSmallTooltip"
+      container="body"
+      placement="top"
+      containerClass="itemTooltip"
+      [ngClass]="{'in-cl-small': input.posX == 0, 'in-cm-small': input.posX == 1, 'in-cr-small': input.posX == 2,
+                  'in-rt-small': input.posY == 0, 'in-rc-small': input.posY == 1, 'in-rb-small': input.posY == 2,
+                  'in-ore-dict': input.oreName }">
+  </a>
+
+  <span class="crafting-name-small">{{getRecipeName()}}</span>
+</div>
+
+<div *ngIf="recipe.recipeType === 'furnace' || recipe.recipeType === 'MODERN_FURNACE'" class="recipe-bg">
+  <ng-template #outputTooltip>
+    <span [innerHTML]="getToolTip(recipe.output)"></span>
+  </ng-template>
+
+  <img [src]="getMachineImage(recipe.recipeType)" class="img-fluid">
+  <a [routerLink]="getRouterLink(recipe.output)"><img *ngIf="recipe.output" [src]="getImage(recipe.output, false)" class="out-furnace-small" [tooltip]="outputTooltip" placement="top" container="body" containerClass="itemTooltip"></a>
+
+  <!--   Display inputs -->
+  <ng-template #inputTooltip>
+    <span [innerHTML]="getToolTip(recipe.input)"></span>
+  </ng-template>
+  <a [routerLink]="getRouterLink(recipe.input)">
+    <img *ngIf="recipe.input.id !== 'empty'" [src]="getImage(recipe.input, false)" [tooltip]="inputTooltip" placement="top" container="body" class="in-furnace-small img-fluid" containerClass="itemTooltip">
+  </a>
+
+  <span class="furnace-xp-small">{{recipe.xp}}
+    XP</span>
+  <span class="furnace-name-small">{{getRecipeName()}}</span>
+  <span *ngIf="recipe.output.amount > 1" class="output-amount-furnace">{{recipe.output.amount}}</span>
+</div>
+
+<div *ngIf="recipe.recipeType === 'DERRICK' || recipe.recipeType === 'REFINERY'" class="recipe-bg">
+  <ng-template #outputTooltip>
+    <span [innerHTML]="getToolTip(recipe.output)"></span>
+  </ng-template>
+
+  <img [src]="getMachineImage(recipe.recipeType)" class="img-fluid">
+  <a [routerLink]="getRouterLink(recipe.output)"><img *ngIf="recipe.output" [src]="getImage(recipe.output, false)" class="out-furnace-small img-fluid" [tooltip]="outputTooltip" placement="top" container="body" containerClass="itemTooltip"></a>
+
+  <!--   Display inputs -->
+  <ng-template #inputTooltip>
+    <span [innerHTML]="getToolTip(recipe.input)"></span>
+  </ng-template>
+  <a [routerLink]="getRouterLink(recipe.input)">
+    <img *ngIf="recipe.input.id !== 'empty'" [src]="getImage(recipe.input, false)" [tooltip]="inputTooltip" class="in-machine-small img-fluid" placement="top" container="body" containerClass="itemTooltip">
+  </a>
+
+  <span class="furnace-xp-small">{{recipe.xp}}
+    XP</span>
+  <span class="furnace-name-small">{{getRecipeName()}}</span>
+  <span *ngIf="recipe.output.amount > 1" class="output-amount-machine">{{recipe.output.amount}}</span>
+</div>

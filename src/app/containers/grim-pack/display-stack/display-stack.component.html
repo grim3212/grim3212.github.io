@@ -1,0 +1,4 @@
+<ng-template #tooltip>
+  <span [innerHTML]="getToolTip(stack)"></span>
+</ng-template>
+<img [src]="getImage(stack, 160)" class="img-fluid" [tooltip]="tooltip" placement="top" container="body" containerClass="itemTooltip">

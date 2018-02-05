@@ -1,0 +1,200 @@
+GrimPack uses the json recipe format for almost every recipe except for coloring Backpacks and coloring Pellet Bags.
+<br><br>Included along with GrimPack recipes are many condition's that you can check for.
+<ul>
+  <li>
+    <i>ore_dict</i>
+    condition which checks if 'oreName' exists</li>
+  <li>
+    <i>part_enabled</i>
+    condition checks if the 'part' is loaded</li>
+  <li>
+    <i>(core | cuisine | decor | industry | tools | util | world)_subpart_enabled</i>
+    checks to see if the part is loaded and if it loaded with the 'subpart' provided</li>
+</ul>
+<br><br>
+Finally there are a few custom recipe formats that are included Grills, machine, and chisel.
+<br>
+<strong class="text-info">Chisel:</strong>
+<div class="card bg-light">
+  <div class="card-body">
+    <pre><code>
+{
+"type": "grimpack:chisel",
+"conditions": [
+    {
+      "type": "grimpack:tools_subpart_enabled",
+      "subpart": "chisel"
+    }
+  ],
+  "inBlock": {
+    "item": "minecraft:iron_ore"
+  },
+  "outBlock": {
+    "item": "minecraft:stone",
+    "data": 0
+  },
+  "outItems": {
+    "items": [
+    	{
+    		"item": "grimpack:iron_ore_item"
+    	}
+    ]
+  }
+}
+</code></pre>
+  </div>
+</div>
+
+<ul>
+  <li>
+    <u>inBlock</u>
+    is the block that the chisel will change</li>
+  <li>
+    <u>outBlock</u>
+    is the block that the inBlock will transform into</li>
+  <li>
+    <u>outItems</u>
+    are the items that will be given to the player</li>
+  <li>
+    <u>defaultDrops</u>
+    <em>if true</em>
+    will give the player the default drops if the block was broken</li>
+</ul>
+
+<br><hr><br>
+<strong class="text-info">Grills:</strong>
+<div class="card bg-light">
+  <div class="card-body">
+    <pre><code>
+{
+"conditions": [
+    {
+      "type": "grimpack:decor_subpart_enabled",
+      "subpart": "fireplaces"
+    }
+  ],
+  "type": "grimpack:grill",
+  "input": {
+  	"item": "minecraft:chicken"
+  },
+  "output": {
+    "item": "minecraft:cooked_chicken"
+  },
+  "experience": 0.35
+}
+</code></pre>
+  </div>
+</div>
+
+<ul>
+  <li>
+    <u>input</u>
+    is the item to grill</li>
+  <li>
+    <u>output</u>
+    is the item after it has been fully grilled</li>
+  <li>
+    <u>experience</u>
+    is the amount of experience to give the player</li>
+</ul>
+
+<br><hr><br>
+All machines follow the same pattern of
+
+<ul>
+  <li>
+    <u>input</u>
+    for input item</li>
+  <li>
+    <u>output</u>
+    for item returned</li>
+  <li>
+    <u>experience</u>
+    for xp to give to the player</li>
+  <li>
+    <u>machine</u>
+    to specify which type of machine it is (<em>derrick | refinery | modern_furnace</em>)</li>
+</ul>
+
+<br>
+<span class="text-success">All machines also allow for the input to be an oredict name so all inputs of that orename will be changed into the output.</span>
+<br><br>
+<strong class="text-info">Derrick:</strong>
+<div class="card bg-light">
+  <div class="card-body">
+    <pre><code>
+{
+"conditions": [
+    {
+      "type": "grimpack:industry_subpart_enabled",
+      "subpart": "machines"
+    },
+    {
+      "type": "grimpack:ore_dict",
+      "oreName": "can"
+    }
+  ],
+  "type": "grimpack:machine",
+  "machine": "derrick",
+  "input": {
+  	"item": "#CAN"
+  },
+  "output": {
+    "item": "grimpack:crude_oil"
+  },
+  "experience": 0.1
+}
+</code></pre>
+  </div>
+</div>
+<br>
+<strong class="text-info">Refinery:</strong>
+<div class="card bg-light">
+  <div class="card-body">
+    <pre><code>
+{
+"conditions": [
+    {
+      "type": "grimpack:industry_subpart_enabled",
+      "subpart": "machines"
+    }
+  ],
+  "type": "grimpack:machine",
+  "machine": "refinery",
+  "input": {
+  	"item": "#DIRT"
+  },
+  "output": {
+    "item": "minecraft:clay_ball"
+  },
+  "experience": 0.25
+}
+</code></pre>
+  </div>
+</div>
+
+<br>
+<strong class="text-info">Modern Furnace:</strong>
+<div class="card bg-light">
+  <div class="card-body">
+    <pre><code>
+{
+"conditions": [
+    {
+      "type": "grimpack:industry_subpart_enabled",
+      "subpart": "machines"
+    }
+  ],
+  "type": "grimpack:machine",
+  "machine": "modern_furnace",
+  "input": {
+  	"item": "minecraft:glass"
+  },
+  "output": {
+    "item": "grimpack:tempered_glass"
+  },
+  "experience": 0.25
+}
+</code></pre>
+  </div>
+</div>

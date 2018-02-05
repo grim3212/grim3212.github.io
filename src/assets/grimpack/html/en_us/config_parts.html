@@ -1,0 +1,34 @@
+One major way that you can affect how you play with GrimPack is by
+<i>enabling/disabling</i>
+parts that are included. As you may know GrimPack is divided into parts, each part having its own theme. Using the core config file you can disable a complete part.
+<br>
+
+<div class="card bg-light">
+  <div class="card-body">
+    <pre><code>
+parts {
+      B:"Enable cuisine part"=true
+      B:"Enable decor part"=true
+      B:"Enable industry part"=true
+      B:"Enable tools part"=true
+      B:"Enable util part"=true
+      B:"Enable world part"=true
+}
+
+subparts {
+      B:"Enable aluminum subpart"=true
+      B:"Enable coal subpart"=true
+      B:"Enable graphite subpart"=true
+      B:"Enable iron subpart"=true
+      B:"Enable rubber subpart"=true
+      B:"Enable steel subpart"=true
+}
+</code></pre>
+  </div>
+</div>
+
+<br>Another way to affect a large portion of GrimPack is to disable subparts these subparts can be found in each parts config file and pertain to a group of common
+<i>item / blocks / entities / etc</i>. When you disable it everything that pertains to that subpart will be disbaled as well.
+<br>
+<br>
+<strong class="text-danger">These require a full Minecraft restart to take effect</strong>

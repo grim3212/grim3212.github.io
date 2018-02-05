@@ -1,0 +1,41 @@
+<div *ngIf="prop.children">
+  <div class="card bg-light border-dark">
+    <div class="card-body">
+      <h5 class="card-title text-primary">{{prop.name}}</h5>
+      <div class="card-text">{{prop.comment}}</div>
+      <config-entry [category]="prop.children"></config-entry>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!prop.children">
+  <div class="card border-info">
+    <div class="card-body">
+      <h5 class="card-title text-info">{{prop.name}}</h5>
+      <div class="card-text">{{prop.comment}}</div>
+      <br>
+      <div class="card-text">
+        <div class="row">
+          <div class="col">
+            <span class="text-secondary font-weight-bold">MC Restart:</span>
+            {{prop.mcrestart}}
+          </div>
+          <div class="col">
+            <span class="text-secondary font-weight-bold">World Restart:</span>
+            {{prop.worldrestart}}
+          </div>
+          <div class="col">
+            <span class="text-secondary font-weight-bold">Property Type:</span>
+            <span class="text-lowercase">{{prop.type}}</span>
+            <span *ngIf="prop.defaults.length > 1">list</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer text-muted">
+      <strong>DEFAULTS:
+      </strong>{{prop.defaults}}
+    </div>
+  </div>
+</div>

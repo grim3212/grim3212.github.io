@@ -1,0 +1,55 @@
+<!-- All of the following is loaded within the index.html app-root tags -->
+<header class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" [routerLink]="['/home']">Home</a>
+  <button type="button" class="navbar-toggler" (click)="navbarCollapsed = !navbarCollapsed" [attr.aria-expanded]="!navbarCollapsed" aria-controls="navbarContent" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div id="navbarContent" class="collapse navbar-collapse" [collapse]="navbarCollapsed">
+    <ul class="navbar-nav mr-auto">
+      <li [routerLinkActive]="['link-active']" class="nav-item">
+        <a class="nav-link" [routerLink]="['/grim-pack']">Grim Pack</a>
+      </li>
+      <li [routerLinkActive]="['link-active']" class="nav-item">
+        <a class="nav-link" [routerLink]="['/collection-parser']">Steam Parser</a>
+      </li>
+      <li [routerLinkActive]="['link-active']" class="nav-item">
+        <a class="nav-link" [routerLink]="['/about']">About</a>
+      </li>
+      <li dropdown class="nav-item dropdown">
+        <a href="javascript:void(0)" dropdownToggle class="nav-link dropdown-toggle">Other Projects</a>
+        <ul *dropdownMenu class="dropdown-menu">
+          <li>
+            <a class="dropdown-item" [routerLink]="['/pocket-pantry']">Pocket Pantry</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <a href="https://github.com/grim3212" class="text-info px-2"><i class="fa fa-github fa-2x"></i></a>
+    <a href="https://twitter.com/grim3212" class="text-info px-2"><i class="fa fa-twitter fa-2x"></i></a>
+    <!-- Implement later to easily search for relevant info -->
+    <form *ngIf="false" class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</header>
+
+<!-- Anchor for the top -->
+<a id="top"></a>
+
+<!-- Don't assume we want this to automatically be contained in a container -->
+<router-outlet></router-outlet>
+
+<footer class="bd-footer text-muted">
+  <div class="container">
+    <p>
+      &copy;
+      {{year}}
+      Dakota Pierone. Built using
+      <a href="https://angular.io/">Angular</a>
+      and
+      <a href="https://valor-software.com/ngx-bootstrap/">Ngx-Bootstrap</a>.
+    </p>
+  </div>
+</footer>

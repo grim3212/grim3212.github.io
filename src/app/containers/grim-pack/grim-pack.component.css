@@ -1,0 +1,13 @@
+a.text-muted.chosen {
+    color: rgb(53, 53, 157) !important;
+    font-weight: bold;
+}
+
+.shadow {
+  -webkit-filter: drop-shadow(5px 5px 5px #222);
+  filter: drop-shadow(5px 5px 5px #222);
+}
+
+.bottom-button {
+  vertical-align: bottom;
+}

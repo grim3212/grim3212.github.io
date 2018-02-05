@@ -1,0 +1,206 @@
+<div class="jumbotron">
+  <div class="container">
+    <a routerLink="/grim-pack">
+      <h1 class="display-3">Grim Pack</h1>
+    </a>
+    <div *ngIf="jsonLoaded">
+      <div class="row">
+        <div class="col">
+          Grim Pack-
+          <div dropdown class="btn-group">
+            <button dropdownToggle class="btn btn-info btn-sm dropdown-toggle" type="button">{{gpData.getFullVersion()}}</button>
+            <div *dropdownMenu class="dropdown-menu" role="menu">
+              <div *ngFor="let version of versions">
+                <h6 class="dropdown-header">{{version.mcversion}}</h6>
+                <div *ngFor="let modversion of version.modversions">
+                  <button class="dropdown-item" (click)="setVersion(version.mcversion, modversion.version)">{{modversion.version}}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <br>
+          Minecraft Version:
+          {{data.mcversion}}
+          <br>
+          Forge Version:
+          {{data.forgeversion}}
+          <br>
+          <br>
+          <strong>Optional:</strong>
+          <br>
+          JEI Version:
+          {{data.jeiversion}}
+          <br>
+          JER Version:
+          {{data.jerversion}}
+          <br>
+        </div>
+        <div class="col">
+          <div>
+            Documentation Generated:
+            {{data.generated | date}}
+            <br>
+            Lang:
+            <div dropdown class="btn-group">
+              <button dropdownToggle class="btn btn-info btn-sm dropdown-toggle" type="button">{{gpData.getLang()}}</button>
+              <div *dropdownMenu class="dropdown-menu" role="menu">
+                <div *ngFor="let lang of langs">
+                  <button class="dropdown-item" (click)="setLang(lang)">{{lang}}</button>
+                </div>
+              </div>
+            </div>
+            <br>
+            <br>
+            <strong>Stats:</strong>
+            <br>
+            Number of Parts:
+            {{stats.parts}}
+            <br>
+            Number of Chapters:
+            {{stats.chapters}}
+            <br>
+            Number of Sections:
+            {{stats.pages}}
+          </div>
+        </div>
+      </div>
+
+      <a href="https://minecraft.curseforge.com/projects/grim-pack"><img src="https://cf.way2muchnoise.eu/versions/Minecraft_grim-pack_all.svg"></a>
+      <a href="https://minecraft.curseforge.com/projects/grim-pack"><img src="https://cf.way2muchnoise.eu/full_grim-pack_downloads.svg"></a>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="jsonLoaded" class="container">
+  <!-- Only display side bar if everything loaded properly -->
+  <!-- Probably not needed but whatever -->
+  <div class="row">
+    <div *ngIf="partPage || chapterPage" class="col-12 col-md-3 push-md-9 bd-sidebar">
+      <nav>
+        <div *ngFor="let part of data.parts" class="bd-toc-item">
+          <h4>
+            <a *ngIf="partName === part.id" class="text-muted chosen" routerLink="/grim-pack/{{part.id}}">{{part.name}}</a>
+            <a *ngIf="partName !== part.id" class="text-muted" routerLink="/grim-pack/{{part.id}}">{{part.name}}</a>
+          </h4>
+
+          <!--
+              Used if we only want to display the current parts chapters
+              <div id="partSections" *ngIf="part.chapters.length > 0 && partName === part.id">
+          -->
+          <div id="partSections" *ngIf="part.chapters.length > 0 && ((partName === part.id && !toggleAll) || toggleAll)">
+            <ul>
+              <li *ngFor="let chapter of part.chapters">
+                <a *ngIf="partSection === chapter.id && chapter.id !=='config'" class="text-success" routerLink="/grim-pack/{{part.id}}/{{chapter.id}}">
+                  <u>{{chapter.name}}</u>
+                </a>
+                <a *ngIf="partSection === chapter.id && chapter.id ==='config'" class="text-dark" routerLink="/grim-pack/{{part.id}}/{{chapter.id}}">
+                  <u>{{chapter.name}}</u>
+                </a>
+                <a *ngIf="partSection !== chapter.id && chapter.id !=='config'" class="text-primary" routerLink="/grim-pack/{{part.id}}/{{chapter.id}}">{{chapter.name}}</a>
+                <a *ngIf="partSection !== chapter.id && chapter.id ==='config'" class="text-secondary" routerLink="/grim-pack/{{part.id}}/{{chapter.id}}">{{chapter.name}}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn btn-primary btn-block" (click)="toggleAll = !toggleAll">
+            <span *ngIf="toggleAll">Collapse</span>
+            <span *ngIf="!toggleAll">Expand</span>
+          </button>
+        </div>
+      </nav>
+    </div>
+
+    <!-- If on main overview page of GrimPack -->
+    <div *ngIf="overviewPage">
+      <!-- Display each part from the part service -->
+      <div *ngFor="let row of buildPartArray(3); let i = index" class="row">
+        <div *ngFor="let part of row" class="col-md-4">
+          <h2>{{part.name}}</h2>
+          <span [innerHTML]="part.info"></span>
+          <br>
+          <a class="btn btn-secondary" routerLink="/grim-pack/{{part.id}}" role="button">View details &raquo;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-9 pull-md-3">
+      <!-- If on a parts page that breaks down into chapters -->
+      <div *ngIf="partPage">
+        <h2>{{part.name}}</h2>
+        <span [innerHTML]="part.info"></span>
+        <div *ngIf="part.imageUrls" class="row justify-content-center align-items-center">
+          <div *ngFor="let image of part.imageUrls">
+            <img [src]="image" class="img-fluid rounded">
+            <br>
+          </div>
+          <br>
+        </div>
+      </div>
+
+      <!-- If on a page with information and on a specific chapter -->
+      <div *ngIf="chapterPage">
+        <h2>{{part.name}}
+          -
+          {{chapter.name}}</h2>
+        <br>
+        <span [innerHTML]="chapter.info"></span>
+        <div *ngIf="chapter.imageUrls" class="row justify-content-center align-items-center">
+          <div *ngFor="let image of chapter.imageUrls">
+            <img [src]="image" class="img-fluid rounded">
+            <br>
+          </div>
+          <br>
+        </div>
+        <!-- Regular chapter pages all follow the same basic layout -->
+        <div *ngIf="chapter.id !== 'config'">
+          <div *ngFor="let page of chapter.pages" class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{page.name}}</h5>
+              <br>
+              <div class="card-text">
+                <!-- Info can be a separate html file now -->
+                <div *ngIf="page.info.endsWith('.html')">
+                  <span [innerHTML]="htmls.get(page.info)"></span>
+                </div>
+                <div *ngIf="!page.info.endsWith('.html')">
+                  <span [innerHTML]="page.info"></span>
+                </div>
+              </div>
+              <br>
+              <!-- Display Recipes -->
+              <div *ngIf="page.recipes" class="row justify-content-center align-items-center">
+                <div *ngFor="let recipe of page.recipes">
+                  <crafting-recipe [recipe]="recipe" [recipeName]="getRecipeName(recipe)"></crafting-recipe>
+                  <br>
+                </div>
+                <br>
+              </div>
+              <!-- Display stacks -->
+              <div *ngIf="page.displayStacks" class="row justify-content-center align-items-center">
+                <div *ngFor="let stack of page.displayStacks">
+                  <display-stack [stack]="stack"></display-stack>
+                  <br>
+                </div>
+                <br>
+              </div>
+              <!-- Display Images -->
+              <div *ngIf="page.imageUrls" class="row justify-content-center align-items-center">
+                <div *ngFor="let image of page.imageUrls">
+                  <img [src]="image" class="img-fluid rounded shadow">
+                  <br>
+                </div>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Config pages get special treatment -->
+        <div *ngIf="chapter.id === 'config'">
+          <config-entry [category]="chapter.pages"></config-entry>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

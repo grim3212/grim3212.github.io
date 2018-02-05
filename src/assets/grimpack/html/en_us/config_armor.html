@@ -1,0 +1,42 @@
+All armor materials added by GrimPack allow for configuration. You can only configure this by finding your config folder, inside the grimpack folder, is a materials folder, and then any thing that ends in armor_material.
+<br>
+
+<div class="card bg-light">
+  <div class="card-body">
+    <pre><code>
+{
+	"durability": 35,
+	"reductionAmounts": [
+		4,
+		8,
+		10,
+		4
+	],
+	"enchantability": 20,
+	"toughness": 2.5
+}
+</code></pre>
+  </div>
+</div>
+
+<br>All values for armor material can be modified.
+<br><br>
+<ul>
+  <li>
+    <em>durability</em>
+    refers to how long the armor will last. This value is multiplied differently for each piece.
+    <ul>
+      <li>durability * 11 for the helmet</li>
+      <li>durability * 16 for the chestplate</li>
+      <li>durability * 15 for the leggings</li>
+      <li>durability * 13 for the boots</li>
+    </ul>
+  </li>
+  <li>
+    <em>reductionAmounts</em>
+    refers to the number of armor points the player gets for wearing each piece of armor. Follows the same pattern of first helmet, then chestplate, leggings, and finally boots.</li>
+  <li>
+    <em>enchantibility</em>
+    refers to how enchantible the material is. The higher the number the better enchantments are likely to appear.</li>
+  <ul/>
+  <br>

@@ -1,0 +1,29 @@
+When looking through the configuration files you may come across a property that looks like this.
+<br>
+
+<div class="card bg-light">
+  <div class="card-body">
+    <pre><code>
+S:"Blocks allowed when restrict powerstaff is active" <
+    dirt
+    grass
+    cobblestone
+    stone
+>
+</code></pre>
+  </div>
+</div>
+
+<br>This corresponds to a list of item or blocks depending on the context. You can use basic registry names so
+<em>minecraft:dirt</em>
+or
+<em>grimpack:repulsor</em>. But you can also do some special things.
+<br>You can add meta by adding an extra colon and appending the meta or a
+<em>?</em>
+for any meta.
+<br>
+<strong class="text-info">Example: 'dye:4', 'minecraft:dye:?', 'modname:item:meta'</strong>
+<br>These lists also support the OreDictionary using similar tags following the basic pattern
+<em>oredict:orename</em>. The oredict tag also supports meta just like the previous by appending a number or '?'
+<br>
+<strong class="text-info">Example: 'oredict:dye:2' (So all dyes will meta 2) or 'oredict:dye:?' (So all dyes with any meta)</strong>

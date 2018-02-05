@@ -1,0 +1,61 @@
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3">Steam Collection Parser</h1>
+  </div>
+</div>
+<div class="container">
+
+  <div class="alert alert-success" role="alert">
+    Simply type in the collection id for the collection that you would like to parse information from.
+  </div>
+
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="collection-id-text">Collection Id:</span>
+    <input type="text" class="form-control" [(ngModel)]="collectionid" name="collectionid" id="collection-id" aria-describedby="collection-id-text">
+  </div>
+
+  <br>
+
+  <button (click)="getCollectionDetails()" class="btn btn-primary btn-lg btn-block">Parse</button>
+
+  <br>
+  <!-- Start grid for displaying parsed info -->
+  <div *ngIf="generated" class="row">
+    <div class="col-8">
+      <!-- Workshop items list -->
+      <div class="row">
+        <div class="col-8">
+          <strong>Title</strong>
+        </div>
+        <div class="col-4">
+          <strong>Id</strong>
+        </div>
+      </div>
+      <div class="row" *ngFor="let item of retrievedItems">
+        <div class="col-8">
+          <a target="_blank" href="http://steamcommunity.com/sharedfiles/filedetails/?id={{item.publishedfileid}}">{{item.title}}</a>
+        </div>
+        <div class="col-4">
+          {{item.publishedfileid}}
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <!-- In collection box -->
+      <button type="button" class="btn btn-info btn-block">
+        Collection Id's
+      </button>
+      <div>
+        <div class="card">
+          <div class="card-body">
+            <span class="d-block text-center" *ngFor="let item of items">
+              {{item.publishedfileid}}
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

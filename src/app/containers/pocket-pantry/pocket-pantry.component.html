@@ -1,0 +1,52 @@
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3">Pocket Pantry</h1>
+  </div>
+</div>
+<div class="container">
+  <p>PocketPantry is a mobile app built using
+    <a href="http://ionicframework.com/">Ionic2</a>
+    ( A framework that utilizes web technologies (Typescript, HTML, CSS) to create a web app) that allows you to scan in your products that you have in your pantry. Using this information you can select which items you would like to use in a search for
+    possible recipes that you can make with those products.</p>
+  <h2>Pantry Tab</h2>
+  <p>When you are on the pantry tab there are many things that you can do. First, you will probably want to add items to your pantry list. You can do this in one of two ways. The first is to use the floating action button in the bottom right corner. If
+    you click on this more options will appear to the left of it which are things that you can do.</p>
+  <img src="https://i.imgur.com/X2kvQeC.png" class="img-fluid rounded shadow"/>
+  <img src="https://i.imgur.com/VOuuJBn.png" class="img-fluid rounded shadow"/>
+  <p>The far left one is barcode scanner. This option will open a barcode scanner. Once open center a barcode in the view and it will search for an item with the same UPC.</p>
+  <img src="https://i.imgur.com/nPezYi5.png" class="img-fluid rounded shadow"/>
+  <p>Another option is the second left most action. This will open manual search. From here you can type in keywords and it will display a list of relevant products. Simply click on one to add it to your pantry.</p>
+  <img src="https://i.imgur.com/AgJPv9o.png" class="img-fluid rounded shadow"/>
+  <img src="https://i.imgur.com/4AtMcQ7.png" class="img-fluid rounded shadow"/>
+  <p>The other two actions from the floating action button are choose sort and choose filter. When clicked on they will open a list of possible filters and sorts. Click on one and hit save and your list displayed will be updated accordingly.</p>
+  <img src="https://i.imgur.com/FO0ld3r.png" class="img-fluid rounded shadow"/>
+  <img src="https://i.imgur.com/40UtZTm.png" class="img-fluid rounded shadow"/>
+  <p>The other way of performing actions on your pantry list is using the button in the top right corner. This will give you more options as well as tell you the names for the icons that the floating action button uses. You can still do the same four
+    things of barcode scan, manual search, filter, and sort. But, there are a few other options recent items, change order, and clear pantry. Recent items will display a list of items that have an amount of 0 or less. From this list, you can click on an
+    item to re-add the item to your pantry list. Change order will reverse the direction of the pantry list. So, if you sort alphabetically and reverse then it will be from Z-A rather than A-Z. Finally, clear the pantry will allow you to set the amount
+    to 0 for all the items in your pantry list.</p>
+  <img src="https://i.imgur.com/C5rSSU8.png" class="img-fluid rounded shadow"/>
+  <img src="https://i.imgur.com/c5kMTno.png" class="img-fluid rounded shadow"/>
+  <p>The last few actions you can do have to do with the pantry list itself. The green +, red -, and gold star buttons allow you to modify those items. The green + will increment the amount by 1, the red – will decrement the amount by 1, and the gold
+    star will favorite the item. Finally, if you click on the item it will take you to the item page. From here you can view basic information about the item. You are also able to click on the favorite to toggle if the item is a favorite and click on
+    amount to set the amount of the item.</p>
+  <img src="https://i.imgur.com/B4X0ILz.png" class="img-fluid rounded shadow"/>
+  <img src="https://i.imgur.com/zSfTMUw.png" class="img-fluid rounded shadow"/>
+  <p>That is everything for the product tab.</p>
+  <h2>Recipe Tab</h2>
+  <p>The main goal of this recipe tab is to display a list of recipes to the user with a large image and short description of its contents. When a user first opens the app and clicks on the “Recipes” tab, the app’s Recipe page opens. If there are no
+    products in their pantry, “No recipes found.” is displayed.</p>
+  <img src="https://i.imgur.com/GYuvfus.png" class="img-fluid rounded shadow"/>
+  <img src="https://i.imgur.com/1rhAZv3.png" class="img-fluid rounded shadow"/>
+  <p>Otherwise, a list of 10 recipes cards are displayed in ascending order based on their likes. Each recipe card contains: a large image for detailed viewing, a heart icon with the number of times the recipe has been likes, a checked box with the
+    number of items in your pantry that are included in the recipe, and an unchecked box with the number of products it requires that aren’t in the pantry.</p>
+  <img src="https://i.imgur.com/G01SyA2.png" class="img-fluid rounded shadow"/>
+  <img src="https://i.imgur.com/TT6fU74.png" class="img-fluid rounded shadow"/>
+  <p>The entire recipe card is “tappable” so the user can click on it to access the details of the recipe. If the recipe information is contained within the Spoonacular API, then the page loads the recipe: image, prep time, cook time, ingredients, and
+    directions. Otherwise, an “Open in browser” button will appear and if the recipe source page will open in an InAppBrowser window if the device is Android, or the system browser if IOS.</p>
+  <img src="https://i.imgur.com/8u4YNLb.png" class="img-fluid rounded shadow"/>
+  <img src="https://i.imgur.com/OCckHq6.png" class="img-fluid rounded shadow"/>
+  <p>By default, recipes are generated by using all the products contained in the pantry. If a user wishes to edit which items are used in the recipe generation, they can open the item checklist by clicking the “Edit Items” button. This opens a
+    checklist where the user can modify the checked items, and once they press “okay,” a new list of recipes will be generated. The recipes tab also includes the ability to manually search for a recipe by keywords. The user can click on the “Search”
+    button, enter keywords, then “search” again and the page will repopulate with new recipes based off the search keywords.</p>
+</div>

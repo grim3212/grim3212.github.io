@@ -1,0 +1,189 @@
+.recipe-bg {
+  position: relative;
+  display: inline;
+}
+
+.in-ore-dict {
+  -webkit-filter: drop-shadow(0px 0px 5px gold);
+  filter: drop-shadow(0px 0px 5px gold);
+}
+
+
+/* Basic property so we get a responsive feel */
+
+.output, .in-rt, .in-rc, .in-rb, .in-cl, .in-cm, .in-cr {
+  position: absolute;
+  max-width: 10%;
+}
+
+.output {
+  left: 76.5%;
+  bottom: 6%;
+}
+
+
+/* Input top row */
+
+.in-rt {
+  margin-bottom: 10%;
+  bottom: 65%;
+}
+
+
+/* Input center row */
+
+.in-rc {
+  bottom: -16%;
+}
+
+
+/* Input bottom row */
+
+.in-rb {
+  margin-bottom: -15%;
+  bottom: 56%;
+}
+
+
+/* Input left column */
+
+.in-cl {
+  left: 10.5%;
+}
+
+
+/* Input middle column */
+
+.in-cm {
+  left: 23.25%;
+}
+
+
+/* Input right column */
+
+.in-cr {
+  left: 35.75%;
+}
+
+
+/* ============== SMALL ========================= */
+
+
+/* Basic property so we get a responsive feel */
+
+.output-small, .in-rt-small, .in-rc-small, .in-rb-small, .in-cl-small, .in-cm-small, .in-cr-small {
+  position: absolute;
+  max-width: 16%;
+}
+
+.crafting-name-small, .furnace-name-small {
+  position: absolute;
+  margin-bottom: -25%;
+  left: 0%;
+  bottom: 75%;
+  text-align: center;
+  width: 100%;
+}
+
+.furnace-name-small {
+  bottom: -10%;
+}
+
+.furnace-xp-small {
+  position: absolute;
+  max-width: 20%;
+  bottom: 170%;
+  left: 35.5%;
+}
+
+.output-small {
+  left: 76.125%;
+  bottom: 9%;
+}
+
+.output-amount-crafting, .output-amount-furnace, .output-amount-machine {
+  position: absolute;
+  font-family: 'Minecraft';
+  color: white;
+  -webkit-filter: drop-shadow(0px 2px 3px black);
+  filter: drop-shadow(0px 2px 3px black);
+}
+
+.output-amount-crafting {
+  left: 82%;
+  bottom: -45%;
+}
+
+.output-amount-furnace {
+  left: 78%;
+  bottom: -15%;
+}
+
+.output-amount-machine {
+  left: 78%;
+  bottom: -15%;
+}
+
+/* Input top row */
+
+.in-rt-small {
+  margin-bottom: 10%;
+  bottom: 60%;
+}
+
+
+/* Input center row */
+
+.in-rc-small {
+  bottom: 16%;
+}
+
+
+/* Input bottom row */
+
+.in-rb-small {
+  margin-bottom: -15%;
+  bottom: 58%;
+}
+
+
+/* Input left column */
+
+.in-cl-small {
+  left: 11%;
+}
+
+
+/* Input middle column */
+
+.in-cm-small {
+  left: 23.50%;
+}
+
+
+/* Input right column */
+
+.in-cr-small {
+  left: 36%;
+}
+
+.out-furnace-small, .in-furnace-small, .in-machine-small {
+  position: absolute;
+  max-width: 12%;
+}
+
+.out-furnace-small {
+  left: 69.25%;
+  bottom: 18%;
+}
+
+.in-furnace-small {
+  left: 14.25%;
+  bottom: 90%;
+  margin-bottom: 10%;
+}
+
+.in-machine-small {
+  left: 14.25%;
+  bottom: 20%;
+}

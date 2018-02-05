@@ -1,0 +1,87 @@
+$navbar-default-bg: #312312;
+$light-orange: #ff8c00;
+$navbar-default-color: $light-orange;
+
+/* Import Bootstrap & Fonts */
+@import "~bootstrap/scss/bootstrap";
+
+/* Import FontAwesome */
+$fa-font-path: '~font-awesome/fonts';
+@import "~font-awesome/scss/font-awesome";
+
+
+/* *** Overall APP Styling can go here ***
+   --------------------------------------------
+   Note: This Component has ViewEncapsulation.None so the styles will bleed out
+
+*/
+.tooltip.itemTooltip.in {
+  opacity: 1 !important;
+}
+
+.tooltip.itemTooltip .tooltip-inner {
+  color: #1C2833;
+  background-color: lightgray;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+}
+
+.bd-footer {
+  padding: 4rem 0;
+  margin-top: 4rem;
+  font-size: 85%;
+  text-align: center;
+  background-color: #f7f7f7
+}
+
+.bd-footer a {
+  font-weight: 500;
+  color: #464a4c
+}
+
+.bd-footer a:hover {
+  color: #0275d8
+}
+
+.bd-footer p {
+  margin-bottom: 0
+}
+
+@media (min-width:576px) {
+  .bd-footer {
+    text-align: left
+  }
+}
+
+.bd-footer-links {
+  padding-left: 0;
+  margin-bottom: 1rem
+}
+
+.bd-footer-links li {
+  display: inline-block
+}
+
+.bd-footer-links li + li {
+  margin-left: 1rem
+}
+
+.shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+}
+
+body {
+  /* Padding for Jumbotrons */
+  padding-top: 2rem;
+}
+
+.jumbotron {
+  background-color: #a4a4a4;
+  background: linear-gradient(135deg, #a4a4a4, #d6d6d6);
+}
+
+.px-2 {
+  padding-left: ($spacer * .5) !important;
+  padding-right: ($spacer * .5) !important;
+}

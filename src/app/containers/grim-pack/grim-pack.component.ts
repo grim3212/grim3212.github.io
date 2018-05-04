@@ -17,15 +17,15 @@ export class GrimPackComponent implements OnInit {
   private partSection: string;
   private data: any;
 
-  public jsonLoaded: boolean = false;
-  private overviewPage: boolean = false;
-  private partPage: boolean = false;
-  private chapterPage: boolean = false;
+  public jsonLoaded = false;
+  private overviewPage = false;
+  private partPage = false;
+  private chapterPage = false;
 
   private part: any;
   private chapter: any;
 
-  private toggleAll: boolean = false;
+  private toggleAll = false;
 
   private stats = {
     parts: 0,
@@ -45,7 +45,7 @@ export class GrimPackComponent implements OnInit {
     //Setup everything on first creation
     if (!this.gpData.goodURL()) {
       this.gpData.loadVersions().subscribe(result => {
-        this.setVersion(result["latest-mc"], result["latest-mod"]);
+        this.setVersion(result['latest-mc'], result['latest-mod']);
         this.getStats();
       }, error => {
         console.error(error);
@@ -84,12 +84,12 @@ export class GrimPackComponent implements OnInit {
 
   //TODO: Construct anchors and a separate opposite column for the anchors on each chapter page
   public buildPartArray(numColumns: number) {
-    var arrOfarr = [];
+    const arrOfarr = [];
     //We start at 1 to skip information from showing on the main page
-    for (var i = 1; i < this.data.parts.length; i += numColumns) {
-      var row = [];
-      for (var x = 0; x < numColumns; x++) {
-        var value = this.data.parts[i + x];
+    for (let i = 1; i < this.data.parts.length; i += numColumns) {
+      const row = [];
+      for (let x = 0; x < numColumns; x++) {
+        const value = this.data.parts[i + x];
         if (!value) {
           break;
         }
@@ -121,8 +121,9 @@ export class GrimPackComponent implements OnInit {
 
   public setupPage(partId, chapterId?) {
     this.gpData.getData().subscribe(result => {
-      if (result)
+      if (result) {
         this.data = result;
+      }
 
       //console.log(this.data);
 
@@ -135,7 +136,7 @@ export class GrimPackComponent implements OnInit {
             if (chapterId) {
               //This is a chapter page
               this.chapterPage = true;
-              let part = result.parts[i];
+              const part = result.parts[i];
 
               //Get chapter number
               for (let j = 0; j < part.chapters.length; j++) {
@@ -143,7 +144,7 @@ export class GrimPackComponent implements OnInit {
                   this.chapter = part.chapters[j];
 
                   for (let k = 0; k < this.chapter.pages.length; k++) {
-                    let info = this.chapter.pages[k].info;
+                    const info = this.chapter.pages[k].info;
                     if (info && info.endsWith('.html')) {
                       //Check if we have already cache the html
                       if (!this.htmls.has(info)) {

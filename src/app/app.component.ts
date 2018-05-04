@@ -13,10 +13,10 @@ import { LinkService } from './shared/link.service';
 export class AppComponent implements OnInit, OnDestroy {
 
   // This will go at the END of your title for example "Home - Angular Universal..." <-- after the dash (-)
-  private endPageTitle: string = 'Grim3212';
+  private endPageTitle = 'Grim3212';
   // If no Title is provided, we'll use a default one before the dash(-)
-  private defaultPageTitle: string = 'Grim3212';
-  public navbarCollapsed: boolean = true;
+  private defaultPageTitle = 'Grim3212';
+  public navbarCollapsed = true;
 
   private routerSub$: Subscription;
 
@@ -45,7 +45,7 @@ export class AppComponent implements OnInit, OnDestroy {
       .filter(event => event instanceof NavigationEnd)
       .map(() => this.activatedRoute)
       .map(route => {
-        while (route.firstChild) route = route.firstChild;
+        while (route.firstChild) { route = route.firstChild; }
         return route;
       })
       .filter(route => route.outlet === 'primary')
@@ -83,7 +83,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   get year(): number {
-    var d = new Date();
+    const d = new Date();
     return d.getFullYear();
   }
 }

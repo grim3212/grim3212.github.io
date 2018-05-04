@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, Data } from '@angular/router';
 import { GrimPackDataService } from './grim-pack-data.service';
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import 'rxjs/add/operator/first';
 
@@ -22,7 +22,7 @@ export class GrimPackDataResolve implements Resolve<any> {
               if (!partSection) {
                 return {
                   title: result.parts[i].name,
-                  endTitle: "Grim Pack",
+                  endTitle: 'Grim Pack',
                   meta: [{ name: 'description', content: this.removeHTML(result.parts[i].info) }],
                   links: [
                     { rel: 'canonical', href: `https://grim3212.com/grim-pack/${partName}` }
@@ -34,7 +34,7 @@ export class GrimPackDataResolve implements Resolve<any> {
                   if (result.parts[i].chapters[j].id === partSection) {
                     return {
                       title: `${result.parts[i].chapters[j].name} - ${result.parts[i].name}`,
-                      endTitle: "Grim Pack",
+                      endTitle: 'Grim Pack',
                       meta: [{ name: 'description', content: this.removeHTML(result.parts[i].chapters[j].info) }],
                       links: [
                         { rel: 'canonical', href: `https://grim3212.com/grim-pack/${partName}/${partSection}` }
@@ -49,16 +49,16 @@ export class GrimPackDataResolve implements Resolve<any> {
 
       }, error => {
         console.error(error);
-        return "FAILURE";
+        return 'FAILURE';
       }).first();
     }
 
-    return "FAILURE";
+    return 'FAILURE';
   }
 
   private removeHTML(input: string): string {
     if (input) {
-      var result = input.replace(/<\/?[^>]+>/gi, ""); //removing html tag using regex pattern
+      const result = input.replace(/<\/?[^>]+>/gi, ''); //removing html tag using regex pattern
       return result;
     }
   }

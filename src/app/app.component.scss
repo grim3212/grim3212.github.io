@@ -9,6 +9,8 @@ $navbar-default-color: $light-orange;
 $fa-font-path: '~font-awesome/fonts';
 @import "~font-awesome/scss/font-awesome";
 
+/* Impor toasts */
+@import "~ngx-toastr/toastr-bs4-alert";
 
 /* *** Overall APP Styling can go here ***
    --------------------------------------------

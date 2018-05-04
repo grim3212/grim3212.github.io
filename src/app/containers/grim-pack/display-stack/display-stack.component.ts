@@ -13,27 +13,27 @@ export class DisplayStackComponent implements OnInit {
 
   ngOnInit() {
     if (!this.stack) {
-      throw new Error("Attribute 'stack' is required!");
+      throw new Error('Attribute \'stack\' is required!');
     }
   }
 
   getImage(item: any, size: 32 | 64 | 128 | 160 | 256) {
-    let itemPath = item.id.replace(":", "/");
+    const itemPath = item.id.replace(':', '/');
     return `assets/grimpack/icons/${itemPath}/${item.meta}/${size}.png`;
   }
 
-  getToolTip(item: any){
-    if(item.tooltip){
+  getToolTip(item: any) {
+    if (item.tooltip) {
 
       //Change the color of name
-      if(item.tooltip[0].indexOf('<font') == -1){
+      if (item.tooltip[0].indexOf('<font') == -1) {
         item.tooltip[0] = `<font class="text-primary font-weight-bold">${item.tooltip[0]}</font>`;
       }
 
       //Build the tooltip
       let tooltip = '';
-      for(let tip of item.tooltip){
-        tooltip += tip + "<br>";
+      for (const tip of item.tooltip) {
+        tooltip += tip + '<br>';
       }
 
       return tooltip;

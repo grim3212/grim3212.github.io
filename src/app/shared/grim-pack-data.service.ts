@@ -20,7 +20,7 @@ export class GrimPackDataService {
   /* Use latest values to start with */
   private mcversion: string;
   private version: string;
-  private lang: string = 'en_us';
+  private lang = 'en_us';
 
   private url: string;
   private oldurl: string;
@@ -43,7 +43,7 @@ export class GrimPackDataService {
         // create the request, store the `Observable` for subsequent subscribers
         this.observable = this.loadVersions().flatMap(result => {
           //First set full version to get a proper url
-          this.setFullVersion(result["latest-mc"], result["latest-mod"]);
+          this.setFullVersion(result['latest-mc'], result['latest-mod']);
           //Then perform the http request
           return this.http.get(this.url);
         }).map(response => {
@@ -52,7 +52,7 @@ export class GrimPackDataService {
           this.observable = null;
 
           if (!response) {
-            return "FAILURE";
+            return 'FAILURE';
           } else {
             return response;
           }
@@ -69,7 +69,7 @@ export class GrimPackDataService {
             this.observable = null;
 
             if (!response) {
-              return "FAILURE";
+              return 'FAILURE';
             } else {
               return response;
             }
@@ -97,7 +97,7 @@ export class GrimPackDataService {
           this.versionObservable = null;
 
           if (!response) {
-            return "FAILURE";
+            return 'FAILURE';
           } else {
             return response;
           }
@@ -108,8 +108,9 @@ export class GrimPackDataService {
   }
 
   public goodURL(): boolean {
-    if (this.url)
+    if (this.url) {
       return true;
+    }
     return false;
   }
 

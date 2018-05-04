@@ -3,11 +3,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { TransferHttpCacheModule } from '@nguniversal/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { AlertModule } from 'ngx-bootstrap/alert';
+
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './containers/home/home.component';
@@ -15,6 +20,7 @@ import { AboutComponent } from './containers/about/about.component';
 import { PocketPantryComponent } from './containers/pocket-pantry/pocket-pantry.component';
 import { CollectionParserComponent } from './containers/collection-parser/collection-parser.component';
 import { GrimPackComponent } from './containers/grim-pack/grim-pack.component';
+import { GameCompareComponent } from './containers/game-compare/game-compare.component';
 
 //Grim Pack
 import { RecipeComponent } from './containers/grim-pack/recipe/recipe.component';
@@ -51,17 +57,22 @@ import { environment } from '../environments/environment';
         //Error components
         PageNotFoundComponent,
         SomethingWrongComponent,
-        SanitizeHtmlPipe
+        SanitizeHtmlPipe,
+        GameCompareComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'grim3212' }),
 
         FormsModule,
         HttpClientModule,
+        BrowserAnimationsModule,
+
         AccordionModule.forRoot(),
         CollapseModule.forRoot(),
         BsDropdownModule.forRoot(),
         TooltipModule.forRoot(),
+        AlertModule.forRoot(),
+        ToastrModule.forRoot({ preventDuplicates: true }),
 
         RouterModule.forRoot([
             {
@@ -117,6 +128,16 @@ import { environment } from '../environments/environment';
                 }
             },
             {
+                path: 'game-compare', component: GameCompareComponent,
+                data: {
+                    title: 'Steam Game Compare',
+                    meta: [{ name: 'description', content: `This let's you compare your Steam games with your friends!` }],
+                    links: [
+                        { rel: 'canonical', href: 'https://grim3212.com/game-compare' }
+                    ]
+                }
+            },
+            {
                 path: 'grim-pack', component: GrimPackComponent,
                 data: {
                     title: 'Grim Pack',
@@ -165,7 +186,8 @@ import { environment } from '../environments/environment';
                 // Router options
                 useHash: false,
                 preloadingStrategy: PreloadAllModules
-            })
+            }),
+        TransferHttpCacheModule
     ],
     providers: [
         LinkService,

@@ -14,12 +14,12 @@ export class RecipeComponent implements OnInit {
 
   ngOnInit() {
     if (!this.recipe) {
-      throw new Error("Attribute 'recipe' is required!");
+      throw new Error('Attribute \'recipe\' is required!');
     }
   }
 
   getImage(item: any, large: boolean) {
-    let itemPath = item.id.replace(":", "/");
+    const itemPath = item.id.replace(':', '/');
     return `assets/grimpack/icons/${itemPath}/${item.meta}/${large ? 64 : 32}.png`;
   }
 
@@ -32,11 +32,12 @@ export class RecipeComponent implements OnInit {
   }
 
   getCraftingImage(large: boolean) {
-    let path = `assets/grimpack/gui/crafting_table`;
-    if (large)
+    const path = `assets/grimpack/gui/crafting_table`;
+    if (large) {
       return path + `_large.png`;
-    else
+    } else {
       return path + `.png`;
+    }
   }
 
   getMachineImage(type: any) {
@@ -61,8 +62,8 @@ export class RecipeComponent implements OnInit {
       }
 
       //Build the tooltip
-      for (let tip of item.tooltip) {
-        tooltip += tip + "<br>";
+      for (const tip of item.tooltip) {
+        tooltip += tip + '<br>';
       }
     } else {
       tooltip = `<font class="text-primary font-weight-bold">${item.name}</font><br>`;
@@ -70,7 +71,7 @@ export class RecipeComponent implements OnInit {
 
     //Add in ore dict names
     if (item.oreName) {
-      tooltip += 'Accepts any: ' + item.oreName + "<br>";
+      tooltip += 'Accepts any: ' + item.oreName + '<br>';
     }
 
     return tooltip;

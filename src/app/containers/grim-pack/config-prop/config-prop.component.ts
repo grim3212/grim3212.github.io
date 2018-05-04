@@ -13,7 +13,7 @@ export class ConfigPropComponent implements OnInit {
 
   ngOnInit() {
     if (!this.prop) {
-      throw new Error("Attribute 'prop' is required!");
+      throw new Error('Attribute \'prop\' is required!');
     }
   }
 

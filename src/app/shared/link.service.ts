@@ -1,7 +1,7 @@
-/* 
+/*
  * -- LinkService --        [Temporary]
  * @MarkPieszak
- * 
+ *
  * Similar to Meta service but made to handle <link> creation for SEO purposes
  * Soon there will be an overall HeadService within Angular that handles Meta/Link everything
  */

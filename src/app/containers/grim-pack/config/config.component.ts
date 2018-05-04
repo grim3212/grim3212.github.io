@@ -13,7 +13,7 @@ export class ConfigComponent implements OnInit {
 
   ngOnInit() {
     if (!this.category) {
-      throw new Error("Attribute 'category' is required!");
+      throw new Error('Attribute \'category\' is required!');
     }
   }
 }

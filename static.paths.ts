@@ -2,6 +2,7 @@ export const ROUTES = [
   '/',
   '/home',
   '/about',
+  '/game-compare',
   '/collection-parser',
   '/pocket-pantry',
   '/grim-pack',

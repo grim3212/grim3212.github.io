@@ -1,0 +1,132 @@
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-3">Steam Game Compare</h1>
+        <div class="alert alert-warning" role="alert">
+            Work In Progress! Will not work with a large amount of games!
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="alert alert-success" role="alert">
+        Type in your Steam Community ID and you will be able to compare your games with your friends.
+    </div>
+
+
+    <form #idForm="ngForm" (ngSubmit)="getSteamProfile(idForm)" ngNativeValidate>
+        <div class="form-group row">
+            <div class="col">
+                <label class="sr-only" for="steamid">Steam Id</label>
+                <div class="input-group mb-2">
+                    <input type="text" class="form-control" id="steamid" placeholder="Profile Url / Steam Id / Community Id" name="steamid" ngModel required>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div *ngIf="currentProfile">
+        <div class="card">
+            <span class="text-primary" style="position:absolute; top: 5px; right: 5px;">{{currentProfile.games.game_count}} Games</span>
+            <div class="card-body">
+                <div class="media">
+                    <img class="mr-3 rounded" src="{{currentProfile.profile.avatarfull}}" width="64" height="64">
+                    <div class="media-body">
+                        <h5 class="card-title">{{currentProfile.profile.personaname}}</h5>
+                        <p class="card-text">Created {{currentProfile.profile.timecreated * 1000 | date}}</p>
+                    </div>
+                </div>
+
+
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>Steam ID:</b> {{currentProfile.steam64}}</li>
+                <li class="list-group-item"><b>Steam Legacy:</b> {{currentProfile.steamLegacy}}</li>
+                <li class="list-group-item"><b>Steam 32:</b> {{currentProfile.steam32}}</li>
+                <li class="list-group-item"><b>Profile Url:</b> <a href="https://steamcommunity.com/profiles/{{currentProfile.steam64}}">https://steamcommunity.com/profiles/{{currentProfile.steam64}}</a></li>
+                <li *ngIf="currentProfile.profile.profileurl.startsWith('https://steamcommunity.com/id/') || currentProfile.profile.profileurl.startsWith('http://steamcommunity.com/id/')" class="list-group-item"><b>Custom Url:</b> <a href="{{currentProfile.profile.profileurl}}">{{currentProfile.profile.profileurl}}</a></li>
+            </ul>
+        </div>
+
+        <br />
+
+        <div *ngFor="let row of buildFriendArray(currentProfile.friends, 3); let i = index" class="row">
+            <div *ngFor="let friend of row" class="col-md-4">
+                <div class="card">
+                    <div class="card-body" [ngClass]="{
+                          'bg-info': selectedFriends.includes(friend.steamid),
+                          'text-white': selectedFriends.includes(friend.steamid)
+                         }">
+                        <div class="media">
+                            <img class="mr-3 rounded" src="{{friend.profile.avatarfull}}" width="64" height="64">
+                            <div class="media-body">
+                                <a href="{{friend.profile.profileurl}}"><h5 class="card-title" [ngClass]="{'text-dark': selectedFriends.includes(friend.steamid)}">{{friend.profile.personaname}}</h5></a>
+                                <p class="card-text"><b>Friends Since:</b> {{friend.friend_since * 1000 | date}}</p>
+                            </div>
+                        </div>
+                        <!-- Position in top right corner of each card -->
+                        <button *ngIf="!selectedFriends.includes(friend.steamid)" type="button" class="btn btn-primary btn-sm" (click)="toggleFriend(friend)" style="position:absolute; top: 5px; right: 5px;">Add Friend</button>
+                        <button *ngIf="selectedFriends.includes(friend.steamid)" type="button" class="btn btn-danger btn-sm" (click)="toggleFriend(friend)" style="position:absolute; top: 5px; right: 5px;">Remove Friend</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="selectedFriends.length > 0">
+            <div class="container border border-primary rounded">
+                <b>Selected:</b>
+                <span *ngFor="let id of selectedFriends; let i = index" [attr.data-index]="i" class="text-success">
+                    {{getFriendFromId(id).profile.personaname}}<span *ngIf="i !== selectedFriends.length-1">,</span>
+                </span>
+            </div>
+
+            <br />
+
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="catSelect">Category:</label>
+                        <select class="form-control form-control-sm" [(ngModel)]="options.category" id="catSelect" name="category">
+                            <option *ngFor="let cat of categories" [ngValue]="cat">{{cat.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="genreSelect">Genre:</label>
+                        <select class="form-control form-control-sm" [(ngModel)]="options.genre" id="genreSelect" name="genre">
+                            <option *ngFor="let genre of genres" [ngValue]="genre">{{genre.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+
+            <br />
+
+            <button type="button" class="btn btn-primary btn-block" (click)="compareGames()">Compare Games</button>
+        </div>
+
+        <br />
+
+        <div *ngIf="comparing">
+
+            <!-- Display each part from the part service -->
+            <div *ngFor="let row of buildGameArray(filteredGames, 3); let i = index" class="row">
+                <div *ngFor="let game of row" class="col-md-4">
+                    <div class="card">
+                        <a href="https://store.steampowered.com/app/{{game.appid}}">
+                            <img *ngIf="!game.failed" class="card-img img-fluid" [src]="game.imgsrc" (error)="game.failed = true">
+                            <img *ngIf="game.failed" class="card-img img-fluid" src="/assets/images/fallback.jpg">
+                            <div *ngIf="game.failed" class="card-img-overlay">
+                                <div class="card-text text-center">
+                                    <h5 class="card-title text-white" style="text-shadow:-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">{{game.name}}</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--<span>{{currentProfile | json}}</span>-->
+    </div>
+</div>

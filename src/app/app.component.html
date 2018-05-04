@@ -6,25 +6,31 @@
   </button>
 
   <div id="navbarContent" class="collapse navbar-collapse" [collapse]="navbarCollapsed">
-    <ul class="navbar-nav mr-auto">
-      <li [routerLinkActive]="['link-active']" class="nav-item">
-        <a class="nav-link" [routerLink]="['/grim-pack']">Grim Pack</a>
-      </li>
-      <li [routerLinkActive]="['link-active']" class="nav-item">
-        <a class="nav-link" [routerLink]="['/collection-parser']">Steam Parser</a>
-      </li>
-      <li [routerLinkActive]="['link-active']" class="nav-item">
-        <a class="nav-link" [routerLink]="['/about']">About</a>
-      </li>
-      <li dropdown class="nav-item dropdown">
-        <a href="javascript:void(0)" dropdownToggle class="nav-link dropdown-toggle">Other Projects</a>
-        <ul *dropdownMenu class="dropdown-menu">
-          <li>
-            <a class="dropdown-item" [routerLink]="['/pocket-pantry']">Pocket Pantry</a>
+      <ul class="navbar-nav mr-auto">
+          <li [routerLinkActive]="['link-active']" class="nav-item">
+              <a class="nav-link" [routerLink]="['/grim-pack']">Grim Pack</a>
           </li>
-        </ul>
-      </li>
-    </ul>
+          <li [routerLinkActive]="['link-active']" class="nav-item">
+              <a class="nav-link" href="https://trends.grim3212.com/">What's Trending</a>
+          </li>
+          <li [routerLinkActive]="['link-active']" class="nav-item">
+              <a class="nav-link" [routerLink]="['/game-compare']">Game Compare</a>
+          </li>
+          <li [routerLinkActive]="['link-active']" class="nav-item">
+              <a class="nav-link" [routerLink]="['/collection-parser']">Steam Parser</a>
+          </li>
+          <li [routerLinkActive]="['link-active']" class="nav-item">
+              <a class="nav-link" [routerLink]="['/about']">About</a>
+          </li>
+          <li dropdown class="nav-item dropdown">
+              <a href="javascript:void(0)" dropdownToggle class="nav-link dropdown-toggle">Other Projects</a>
+              <ul *dropdownMenu class="dropdown-menu">
+                  <li>
+                      <a class="dropdown-item" [routerLink]="['/pocket-pantry']">Pocket Pantry</a>
+                  </li>
+              </ul>
+          </li>
+      </ul>
     <a href="https://github.com/grim3212" class="text-info px-2"><i class="fa fa-github fa-2x"></i></a>
     <a href="https://twitter.com/grim3212" class="text-info px-2"><i class="fa fa-twitter fa-2x"></i></a>
     <!-- Implement later to easily search for relevant info -->

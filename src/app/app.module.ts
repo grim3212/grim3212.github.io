@@ -16,7 +16,6 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './containers/home/home.component';
-import { AboutComponent } from './containers/about/about.component';
 import { PocketPantryComponent } from './containers/pocket-pantry/pocket-pantry.component';
 import { CollectionParserComponent } from './containers/collection-parser/collection-parser.component';
 import { GrimPackComponent } from './containers/grim-pack/grim-pack.component';
@@ -45,7 +44,6 @@ import { environment } from '../environments/environment';
     declarations: [
         AppComponent,
         HomeComponent,
-        AboutComponent,
         PocketPantryComponent,
         CollectionParserComponent,
         GrimPackComponent,
@@ -94,16 +92,6 @@ import { environment } from '../environments/environment';
                     links: [
                         { rel: 'canonical', href: 'https://grim3212.com/home' },
                         { rel: 'alternate', href: 'https://grim3212.com/' }
-                    ]
-                }
-            },
-            {
-                path: 'about', component: AboutComponent,
-                data: {
-                    title: 'About',
-                    meta: [{ name: 'description', content: 'Overview of Grim3212 and this website.' }],
-                    links: [
-                        { rel: 'canonical', href: 'https://grim3212.com/about' }
                     ]
                 }
             },

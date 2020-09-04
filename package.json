@@ -62,7 +62,7 @@
     "express": "^4.15.2",
     "http-server": "^0.10.0",
     "jasmine-core": "^2.9.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "pre-commit": "^1.2.2",
     "reflect-metadata": "^0.1.10",
     "ts-loader": "^2.3.7",
